@@ -9,7 +9,7 @@ def get_data(stocks, years, jidus):
     for stock in stocks:
         for year in years:
             for jidu in jidus:
-                url = "http://money.finance.sina.com.cn/corp/go.php/vMS_MarketHistory/stockid/%d.phtml?year=%d&jidu=%d" % (stock, year, jidu)
+                url = "http://money.finance.sina.com.cn/corp/go.php/vMS_MarketHistory/stockid/%s.phtml?year=%d&jidu=%d" % (stock, year, jidu)
                 print("download %s" % url)
                 resp = requests.get(url)
                 doc = lxml.html.document_fromstring(resp.content.decode('gbk'))
@@ -36,7 +36,7 @@ def get_data(stocks, years, jidus):
     return df
 
 if __name__ == "__main__":
-    stocks = [601006, 601007]
+    stocks = ["601006", "002930", "601007"]
     years = [2017, 2018]
     jidus = [1, 2, 3, 4]
     get_data(stocks, years, jidus)
